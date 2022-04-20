@@ -1,4 +1,4 @@
-import Component from '../../base/component';
+import { Component } from '@antv/f-engine';
 
 // 缩放
 class interaction extends Component {
