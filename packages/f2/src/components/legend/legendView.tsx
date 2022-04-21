@@ -49,7 +49,12 @@ export default (props) => {
   };
 
   return (
-    <group style={style}>
+    <group
+      style={{
+        display: 'flex',
+        ...style,
+      }}
+    >
       {items.map((item) => {
         const { color, name, value, filtered } = item;
         return (
