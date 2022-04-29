@@ -3,6 +3,7 @@ import { jsx } from '../../../jsx';
 
 export default (props) => {
   const { records, animation } = props;
+
   return (
     <group>
       {records.map((record) => {

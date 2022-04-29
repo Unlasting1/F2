@@ -102,6 +102,7 @@ export default (Views) => {
       const { selected } = state;
 
       const records = this.mapping();
+
       return (
         <View
           coord={coord}

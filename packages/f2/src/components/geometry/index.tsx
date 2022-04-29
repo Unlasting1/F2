@@ -1,4 +1,5 @@
 import { isFunction, each, upperFirst, mix, groupToMap, isObject, flatten } from '@antv/util';
+import { Hammer } from '@antv/f-engine';
 import Selection, { SelectionState } from './selection';
 import * as Adjust from '../../adjust';
 import { toTimeStamp } from '../../util/index';
@@ -153,6 +154,7 @@ class Geometry<
       const field = scale.field;
       names.push(field);
     });
+
     const groups = groupToMap(data, names);
     const records = [];
     for (const key in groups) {
@@ -304,12 +306,13 @@ class Geometry<
   }
 
   _initEvent() {
-    const { container, props } = this;
-    const canvas = container.get('canvas');
+    const { context, props } = this;
+    const { canvas } = context;
+    const hammer = new Hammer(canvas);
     ['onPressStart', 'onPress', 'onPressEnd', 'onPan', 'onPanStart', 'onPanEnd'].forEach(
       (eventName) => {
         if (props[eventName]) {
-          canvas.on(eventName.substr(2).toLowerCase(), (ev) => {
+          hammer.on(eventName.substr(2).toLowerCase(), (ev) => {
             ev.geometry = this;
             props[eventName](ev);
           });

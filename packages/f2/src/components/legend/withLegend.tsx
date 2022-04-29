@@ -135,6 +135,7 @@ export default (View) => {
         height: customHeight,
         position = 'top',
       } = props;
+
       const items = this.getItems();
       if (!items || !items.length) return;
       const { left, top, right, bottom, width: layoutWidth, height: layoutHeight } = parentLayout;
