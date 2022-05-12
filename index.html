@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8'>
+  <meta name='viewport'
+        content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0'>
+  <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+  <title>Document</title>
+  <script src='./dist/f2.min.js'></script>
+</head>
+<body>
+<canvas id='container'></canvas>
+<script>
+  const data = [{
+    year: '1951 年',
+    sales: 38
+  }, {
+    year: '1952 年',
+    sales: 52
+  }, {
+    year: '1956 年',
+    sales: 61
+  }, {
+    year: '1957 年',
+    sales: 145
+  }, {
+    year: '1958 年',
+    sales: 48
+  }, {
+    year: '1959 年',
+    sales: 38
+  }, {
+    year: '1960 年',
+    sales: 38
+  }, {
+    year: '1962 年',
+    sales: 38
+  }];
+  const chart = new F2.Chart({
+    id: 'container',
+    pixelRatio: window.devicePixelRatio
+  });
+
+  chart.source(data, {
+    sales: {
+      tickCount: 5
+    }
+  });
+  chart.coord({
+    transposed: true
+  });
+  chart.tooltip({
+    showItemMarker: false,
+    onShow: function onShow(ev) {
+      const items = ev.items;
+      items[0].name = null;
+      items[0].name = items[0].title;
+      items[0].value = '¥ ' + items[0].value;
+    }
+  });
+  chart.interval().position('year*sales');
+  chart.render();
+</script>
+</body>
+</html>
